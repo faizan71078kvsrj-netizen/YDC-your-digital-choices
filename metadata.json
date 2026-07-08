@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Your Digital Choices (YDC)",
+  "description": "A premium AI-first platform delivering bespoke development, automation, and high-end design with world-class performance and animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
