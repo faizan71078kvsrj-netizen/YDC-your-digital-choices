@@ -2,6 +2,7 @@ export type PageType =
   | 'home'
   | 'about'
   | 'services'
+  | 'solutions'
   | 'portfolio'
   | 'pricing'
   | 'blog'
@@ -13,6 +14,12 @@ export type PageType =
   | 'privacy'
   | 'terms'
   | 'cookies'
+  | 'refund'
+  | 'serveos'
+  | 'products'
+  | 'industries'
+  | 'success-stories'
+  | 'ceo'
   | '404';
 
 export interface Service {

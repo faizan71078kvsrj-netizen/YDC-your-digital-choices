@@ -233,6 +233,30 @@ export default function PricingView({ setActivePage }: PricingViewProps) {
         </div>
       </section>
 
+      {/* Enterprise & Custom Sales Contact Block */}
+      <section className="px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl border border-white/5 text-center space-y-6 bg-gradient-to-br from-primary/5 via-transparent to-transparent">
+          <span className="text-xs font-mono text-primary uppercase tracking-widest block font-bold">
+            ENTERPRISE DEPLOYMENTS & PRIVATE INSTANCES
+          </span>
+          <h3 className="text-xl sm:text-3xl font-display font-black text-white leading-none">
+            Need a Bespoke Agreement?
+          </h3>
+          <p className="text-xs sm:text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
+            For dedicated solutions architect pipelines, high-volume automated Shopify scaling, custom AI model training, or multi-seat SLAs, please email our Enterprise Sales Division:
+          </p>
+          <div className="pt-2">
+            <a
+              href="mailto:sales@yourdigitalchoices.com"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/30 text-primary hover:text-white transition-all duration-200"
+            >
+              <Mail size={14} className="shrink-0" />
+              <span>sales@yourdigitalchoices.com</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

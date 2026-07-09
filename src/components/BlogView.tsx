@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PageType, BlogPost } from '../types';
-import { BLOG_POSTS } from '../data';
-import { X, Calendar, User, Clock, ArrowRight, ShieldCheck, Mail } from 'lucide-react';
+import { BLOG_POSTS, PORTFOLIO } from '../data';
+import { X, Calendar, User, Clock, ArrowRight, ShieldCheck, Mail, Sparkles, Newspaper, BookOpen, ExternalLink, Zap } from 'lucide-react';
 
 interface BlogViewProps {
   setActivePage: (page: PageType) => void;
@@ -11,6 +11,7 @@ export default function BlogView({ setActivePage }: BlogViewProps) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [newsEmail, setNewsEmail] = useState('');
   const [newsSuccess, setNewsSuccess] = useState(false);
+  const [activeTab, setActiveTab] = useState<'resources' | 'news'>('resources');
 
   const handleNewsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,79 +33,165 @@ export default function BlogView({ setActivePage }: BlogViewProps) {
       <section className="px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <span className="text-xs font-mono text-primary uppercase tracking-widest block font-bold">
-            THE YDC TECHNICAL JOURNAL
+            THE YDC TECHNICAL JOURNAL & BROADCASTS
           </span>
           <h1 className="text-4xl sm:text-6xl font-display font-black text-white leading-none">
-            Our Insights & Blogs
+            YDC Insights & Broadcasts
           </h1>
           <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
-            Deep investigative articles regarding e-commerce scale, Shopify Core Web Vitals optimization, and neural API orchestrations.
+            Deep investigative articles regarding e-commerce scale, Shopify Core Web Vitals, and real-time news regarding our recent corporate system launches.
           </p>
+
+          {/* Tab Selector */}
+          <div className="flex justify-center pt-6">
+            <div className="inline-flex rounded-xl p-1 bg-white/5 border border-white/5">
+              <button
+                onClick={() => setActiveTab('resources')}
+                className={`px-5 py-2.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-2 transition-all cursor-pointer ${
+                  activeTab === 'resources'
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                <BookOpen size={14} />
+                <span>Technical Insights (Resources)</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('news')}
+                className={`px-5 py-2.5 rounded-lg text-xs font-semibold font-mono flex items-center space-x-2 transition-all cursor-pointer ${
+                  activeTab === 'news'
+                    ? 'bg-primary text-white shadow-lg'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                <Newspaper size={14} />
+                <span>Recent Launches (News)</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Grid of articles */}
+      {/* Grid of articles / portfolio launches */}
       <section className="px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {BLOG_POSTS.map((post) => (
-            <div
-              key={post.id}
-              onClick={() => setSelectedPost(post)}
-              className="glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                
-                {/* Article Image representation */}
-                <div className="relative aspect-video overflow-hidden bg-dark">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="object-cover w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/90 to-transparent" />
-                  <span className="absolute bottom-4 left-4 text-[10px] font-mono text-gray-400 bg-white/10 px-2.5 py-1 rounded">
-                    {post.category}
-                  </span>
-                </div>
+        <div className="max-w-7xl mx-auto">
+          
+          {activeTab === 'resources' ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {BLOG_POSTS.map((post) => (
+                <div
+                  key={post.id}
+                  onClick={() => setSelectedPost(post)}
+                  className="glass-panel rounded-2xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    
+                    {/* Article Image representation */}
+                    <div className="relative aspect-video overflow-hidden bg-dark">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="object-cover w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark/90 to-transparent" />
+                      <span className="absolute bottom-4 left-4 text-[10px] font-mono text-gray-400 bg-white/10 px-2.5 py-1 rounded">
+                        {post.category}
+                      </span>
+                    </div>
 
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center space-x-3 text-[10px] text-gray-500 font-mono">
-                    <span className="flex items-center space-x-1">
-                      <Calendar size={10} />
-                      <span>{post.date}</span>
+                    <div className="p-6 space-y-3">
+                      <div className="flex items-center space-x-3 text-[10px] text-gray-500 font-mono">
+                        <span className="flex items-center space-x-1">
+                          <Calendar size={10} />
+                          <span>{post.date}</span>
+                        </span>
+                        <span className="flex items-center space-x-1">
+                          <Clock size={10} />
+                          <span>{post.readTime}</span>
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-md sm:text-lg font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* Author footer */}
+                  <div className="p-6 pt-0 border-t border-white/5 flex items-center justify-between text-xs text-gray-500 mt-4">
+                    <span className="flex items-center space-x-1.5 font-mono text-[10px]">
+                      <User size={11} className="text-primary" />
+                      <span>By {post.author}</span>
                     </span>
-                    <span className="flex items-center space-x-1">
-                      <Clock size={10} />
-                      <span>{post.readTime}</span>
+                    <span className="font-semibold text-white group-hover:text-primary transition-colors flex items-center space-x-1 text-[11px]">
+                      <span>Read Article</span>
+                      <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
-                  
-                  <h3 className="text-md sm:text-lg font-bold text-white group-hover:text-primary transition-colors leading-snug">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
+
                 </div>
-
-              </div>
-
-              {/* Author footer */}
-              <div className="p-6 pt-0 border-t border-white/5 flex items-center justify-between text-xs text-gray-500 mt-4">
-                <span className="flex items-center space-x-1.5 font-mono text-[10px]">
-                  <User size={11} className="text-primary" />
-                  <span>By {post.author}</span>
-                </span>
-                <span className="font-semibold text-white group-hover:text-primary transition-colors flex items-center space-x-1 text-[11px]">
-                  <span>Read Article</span>
-                  <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </div>
-
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {PORTFOLIO.map((project) => (
+                <div
+                  key={project.id}
+                  onClick={() => handleNav('portfolio')}
+                  className="glass-panel p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-300 cursor-pointer group space-y-4"
+                >
+                  <div className="relative rounded-xl overflow-hidden aspect-video bg-dark border border-white/5">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono text-accent-green uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded">
+                          {project.stats}
+                        </span>
+                        <h3 className="text-md font-bold text-white pt-2 leading-tight">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-primary uppercase tracking-widest block font-bold">
+                        {project.category}
+                      </span>
+                      <span className="text-[9px] font-mono text-gray-500">LIVE SYSTEM ACCELERATED</span>
+                    </div>
+                    <p className="text-xs text-gray-400 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="text-[10px] font-mono text-gray-500 bg-white/5 px-2.5 py-0.5 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-accent-blue group-hover:text-white transition-colors font-semibold">
+                    <span>View Launch Case Study</span>
+                    <ExternalLink size={11} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 import { PageType } from '../types';
 
 interface LegalViewsProps {
-  type: 'privacy' | 'terms' | 'cookies';
+  type: 'privacy' | 'terms' | 'cookies' | 'refund';
   setActivePage: (page: PageType) => void;
 }
 
@@ -75,6 +75,30 @@ export default function LegalViews({ type, setActivePage }: LegalViewsProps) {
               <h3 className="text-md font-bold text-white pt-2 uppercase tracking-wide">2. Analytics Tracking</h3>
               <p>
                 We apply anonymous cookies to track client conversions, performance regressions, and bounce rates, allowing us to continuously optimize Core Web Vitals performance.
+              </p>
+            </div>
+          </div>
+        );
+      case 'refund':
+        return (
+          <div className="space-y-6">
+            <h1 className="text-3xl sm:text-5xl font-display font-black text-white">Refund Policy</h1>
+            <p className="text-xs font-mono text-gray-500 uppercase">LAST MODIFIED: JUNE 29, 2026</p>
+            <div className="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed font-sans">
+              <p>
+                At Your Digital Choices (YDC), we maintain a rigid commitment to transparency, professional software craftsmanship, and client satisfaction. Our refund policies are structured clearly based on milestone sprints.
+              </p>
+              <h3 className="text-md font-bold text-white pt-2 uppercase tracking-wide">1. Milestone Sprint Protection</h3>
+              <p>
+                All bespoke software solutions, customized ERP/CRM layouts, and headless Shopify themes developed by YDC are delivered in chronological milestone sprints. If you are unsatisfied with the deliverables of a specific active sprint, you can request a milestone refund prior to authorizing sign-off or progressing to subsequent phases.
+              </p>
+              <h3 className="text-md font-bold text-white pt-2 uppercase tracking-wide">2. Finalized Work Exclusions</h3>
+              <p>
+                Once a client signs off on a milestone, or authorizes deploy-to-cloud actions of code, that sprint is considered accepted and final. Refund requests cannot be authorized for completed historical milestones.
+              </p>
+              <h3 className="text-md font-bold text-white pt-2 uppercase tracking-wide">3. Licensing and Onboarding</h3>
+              <p>
+                Standard software product subscription or installation licenses (such as ServeOS setups) are non-refundable once the target instance is provisioned and deployed.
               </p>
             </div>
           </div>

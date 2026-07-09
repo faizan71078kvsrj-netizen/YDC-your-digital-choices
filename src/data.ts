@@ -1,17 +1,20 @@
 import { Service, PortfolioItem, Testimonial, FAQItem, BlogPost, TeamMember, JobPosition } from './types';
 
-import ceoImage from './assets/images/ceo_portrait_1782816867967.jpg';
+import ceoImage from './assets/images/regenerated_image_1783597924448.jpg';
+import harisImage from './assets/images/haris_portrait_1782816974291.jpg';
+import sufyanImage from './assets/images/sufyan_portrait_1782816938230.jpg';
+import zainabImage from './assets/images/zainab_portrait_1782816955370.jpg';
 
 export const CONTACT_INFO = {
   email: 'info@yourdigitalchoices.com',
   website: 'www.yourdigitalchoices.com',
   pakistan: {
-    address: 'Near Save Mart, Ghouri Town, Islamabad, Pakistan',
+    address: 'Office No. 12, Plaza 94, Ghauri Town Phase 5, Islamabad 44000, Pakistan',
     phone: '+92 307 9651033',
-    whatsapp: 'https://wa.me/923079651033'
+    whatsapp: 'https://wa.me/923184249817'
   },
   southAfrica: {
-    address: 'Sandton Office Park, Johannesburg, South Africa',
+    address: 'Office 804, 8th Floor, The Box Office, 9 Lower Burg Street, Cape Town 8001, South Africa',
     phone: '+27 73 339 8873',
     whatsapp: 'https://wa.me/27733398873'
   }
@@ -464,14 +467,41 @@ export const BLOG_POSTS: BlogPost[] = [
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Muhammad Faizan Tariq',
-    role: 'Founder & CEO (Since 2019)',
-    bio: 'Muhammad Faizan Tariq founded YDC in 2019. He guides the global engineering division, specializing in deep enterprise systems, custom AI automations, and scalable Shopify Plus solutions.',
+    role: 'Founder & CEO (Since 2020)',
+    bio: 'Muhammad Faizan Tariq founded YDC in 2020. He guides the global engineering division, specializing in deep enterprise systems, custom AI automations, and scalable Shopify Plus solutions.',
     skills: ['System Architecture', 'Shopify Plus', 'AI Workflows', 'Go / Node.js'],
     image: ceoImage,
     whatsapp: 'https://wa.me/923184249817',
-    instagram: 'https://www.instagram.com/itx_faizi_2030?igsh=ZGJsdm1oYWx6cHcw',
-    email: 'faizan71078kvsrj@gmail.com',
+    instagram: 'https://www.instagram.com/itx_faizi_2030',
+    email: 'faizan@yourdigitalchoices.com',
     linkedIn: 'https://linkedin.com'
+  },
+  {
+    name: 'Mian Haris',
+    role: 'Chief Operations Officer',
+    bio: 'Mian Haris oversees global delivery pipelines, manufacturer negotiations in China, and e-commerce logistics automation solutions for our highest volume accounts.',
+    skills: ['Sourcing Logistics', 'Walmart Partner Central', 'Dropshipping Automation', 'Team Scale'],
+    image: harisImage,
+    linkedIn: 'https://linkedin.com',
+    email: 'haris@yourdigitalchoices.com'
+  },
+  {
+    name: 'Sufyan Khan',
+    role: 'Lead Shopify Theme Architect',
+    bio: 'Sufyan is a performance specialist who constructs custom Liquid and Hydrogen setups designed to run under a 1.5s visual complete speed target.',
+    skills: ['Shopify Liquid', 'React', 'Frontend Systems', 'Lighthouse Audits'],
+    image: sufyanImage,
+    linkedIn: 'https://linkedin.com',
+    email: 'sufyan@yourdigitalchoices.com'
+  },
+  {
+    name: 'Zainab Shah',
+    role: 'AI Solution Engineer',
+    bio: 'Zainab is a prompt tuning and voice systems engineer who integrates low-latency Twilio, Vapi, and vector embeddings indexes directly into custom CRMs.',
+    skills: ['LLM Orchestration', 'Twilio Networks', 'Pinecone Indexing', 'Python Microservices'],
+    image: zainabImage,
+    linkedIn: 'https://linkedin.com',
+    email: 'zainab@yourdigitalchoices.com'
   }
 ];
 

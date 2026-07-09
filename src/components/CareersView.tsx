@@ -20,6 +20,18 @@ export default function CareersView({ setActivePage }: CareersViewProps) {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Lock body scrolling when modal is open
+  React.useEffect(() => {
+    if (isApplying) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isApplying]);
+
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -145,13 +157,30 @@ export default function CareersView({ setActivePage }: CareersViewProps) {
 
             </div>
           ))}
+
+          {/* Open Applications Card */}
+          <div className="glass-panel p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-primary/5 to-transparent relative overflow-hidden text-center max-w-2xl mx-auto space-y-4">
+            <h4 className="text-lg font-bold text-white">Can't Find Your Perfect Fit?</h4>
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+              We are constantly scouting for stellar engineers, Shopify designers, and AI automation experts. Send your resume and portfolio directly to our Careers Department:
+            </p>
+            <div className="pt-2">
+              <a
+                href="mailto:careers@yourdigitalchoices.com"
+                className="inline-block px-6 py-2.5 rounded-xl text-xs font-mono font-bold bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/30 text-primary hover:text-white transition-all duration-200"
+              >
+                careers@yourdigitalchoices.com
+              </a>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* Dynamic Application Form Modal with Drag and Drop CV Upload */}
       {isApplying && selectedJob && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="glass-panel w-full max-w-lg rounded-2xl border border-white/10 overflow-hidden shadow-2xl animate-scale-up relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
+          <div className="glass-panel w-full max-w-lg rounded-2xl border border-white/10 overflow-hidden shadow-2xl animate-scale-up relative my-8">
             
             <button
               onClick={() => {
@@ -197,7 +226,7 @@ export default function CareersView({ setActivePage }: CareersViewProps) {
                       <input
                         type="text"
                         required
-                        placeholder="Muhammad Faizan Tariq"
+                        placeholder="John Doe"
                         value={appForm.name}
                         onChange={(e) => setAppForm({ ...appForm, name: e.target.value })}
                         className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary"
@@ -208,7 +237,7 @@ export default function CareersView({ setActivePage }: CareersViewProps) {
                       <input
                         type="email"
                         required
-                        placeholder="faizan@yourdigitalchoices.com"
+                        placeholder="applicant@example.com"
                         value={appForm.email}
                         onChange={(e) => setAppForm({ ...appForm, email: e.target.value })}
                         className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary"
@@ -221,7 +250,7 @@ export default function CareersView({ setActivePage }: CareersViewProps) {
                     <input
                       type="text"
                       required
-                      placeholder="+92 307 9651033"
+                      placeholder="+1 555 123 4567"
                       value={appForm.phone}
                       onChange={(e) => setAppForm({ ...appForm, phone: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary"

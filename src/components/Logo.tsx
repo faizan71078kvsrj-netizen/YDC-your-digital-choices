@@ -16,119 +16,103 @@ export default function Logo({ size = 40, showText = true, className = '', ...pr
       {...props}
     >
       <defs>
-        {/* Gradients */}
-        <linearGradient id="logoBlueGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#0284c7" />
-          <stop offset="100%" stopColor="#38bdf8" />
-        </linearGradient>
-        
-        <linearGradient id="logoCyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#0ea5e9" />
-          <stop offset="100%" stopColor="#22d3ee" />
+        {/* Glowing gradients matching the official YDC branding */}
+        <linearGradient id="ydcBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#38bdf8" />  {/* Bright Sky Cyan */}
+          <stop offset="100%" stopColor="#0052FF" /> {/* Premium Royal Blue */}
         </linearGradient>
 
-        <linearGradient id="logoOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f97316" />
-          <stop offset="100%" stopColor="#fb923c" />
+        <linearGradient id="ydcDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0a1931" />   {/* Deep Space Navy */}
+          <stop offset="100%" stopColor="#020813" />  {/* Near Black */}
         </linearGradient>
 
-        {/* Compound Gradient for C to blend Cyan to Orange */}
-        <linearGradient id="logoCGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="45%" stopColor="#0ea5e9" />
-          <stop offset="75%" stopColor="#f97316" />
-          <stop offset="100%" stopColor="#fb923c" />
+        <linearGradient id="ydcCGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#38bdf8" />   {/* Bright Sky Cyan */}
+          <stop offset="50%" stopColor="#0052FF" />  {/* Premium Royal Blue */}
+          <stop offset="100%" stopColor="#051630" />  {/* Deep Midnight Blue */}
         </linearGradient>
       </defs>
 
-      {/* Dark Circular Background */}
-      <circle cx="100" cy="100" r="96" fill="#040e21" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+      {/* Dark Circular Background with subtle tech border */}
+      <circle 
+        cx="100" 
+        cy="100" 
+        r="96" 
+        fill="#020813" 
+        stroke="rgba(56, 189, 248, 0.12)" 
+        strokeWidth="1.5" 
+      />
 
-      {/* Stylized YDC Graphic */}
-      <g transform="translate(0, 5)">
-        {/* Y - Left Arm */}
+      {/* Stylized YDC Interconnected Monogram */}
+      <g transform="translate(0, -10)">
+        {/* Y - Left Arm & Stem (Seamless Single Path) */}
         <path
-          d="M 50 75 L 70 95"
-          stroke="url(#logoBlueGrad)"
-          strokeWidth="8"
-          strokeLinecap="round"
-          fill="none"
+          d="M 19,60 L 41,60 L 63,92 L 63,140 L 45,140 L 45,102 L 19,65 Z"
+          fill="url(#ydcBlueGrad)"
         />
-        {/* Y - Stem */}
+        
+        {/* Y - Right Arm */}
         <path
-          d="M 70 95 L 70 115"
-          stroke="url(#logoBlueGrad)"
-          strokeWidth="8"
-          strokeLinecap="round"
-          fill="none"
+          d="M 63,92 L 89,60 L 107,60 L 73,102 Z"
+          fill="url(#ydcBlueGrad)"
         />
-        {/* Y - Right Arm with Arrow Shaft */}
+
+        {/* D - Custom Curved Letter (Layered over Y with a crisp contrast border) */}
         <path
-          d="M 70 95 L 88 68"
-          stroke="url(#logoCyanGrad)"
-          strokeWidth="8"
-          strokeLinecap="round"
-          fill="none"
-        />
-        {/* Y - Arrow Head (Points top-right) */}
-        <path
-          d="M 79 59 L 93 61 L 91 75 Z"
-          fill="url(#logoCyanGrad)"
-          stroke="url(#logoCyanGrad)"
+          d="M 81,60 L 109,60 C 134,60 151,76 151,100 C 151,124 134,140 109,140 L 81,140 Z M 97,76 L 97,124 L 109,124 C 122,124 133,115 133,100 C 133,85 122,76 109,76 Z"
+          fill="url(#ydcDarkGrad)"
+          stroke="rgba(56, 189, 248, 0.3)"
           strokeWidth="1"
-          strokeLinejoin="round"
+          fillRule="evenodd"
         />
 
-        {/* D - Letter (Perfect positioning, non-overlapping) */}
+        {/* C - Smooth Outer Arch (Sweeps around D) */}
         <path
-          d="M 104 75 L 104 115 M 104 75 C 118 75 128 82 128 95 C 128 108 118 115 104 115"
-          stroke="url(#logoCyanGrad)"
-          strokeWidth="8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-
-        {/* C - Letter (Smooth, non-overlapping with D) */}
-        <path
-          d="M 160 83 C 155 77 147 75 142 75 C 132 75 133 95 133 95 C 133 95 132 115 142 115 C 147 115 155 113 160 107"
-          stroke="url(#logoCGrad)"
-          strokeWidth="8"
-          strokeLinecap="round"
-          fill="none"
+          d="M 129,60 C 164,60 181,76 181,100 C 181,124 164,140 137,140 L 147,124 C 163,124 163,115 163,100 C 163,85 163,76 147,76 Z"
+          fill="url(#ydcCGrad)"
+          stroke="rgba(56, 189, 248, 0.2)"
+          strokeWidth="0.75"
         />
       </g>
 
       {/* Wordmark and Tagline */}
       {showText && (
         <>
+          {/* Main Brand Title with multi-color highlights */}
           <text
             x="100"
-            y="146"
+            y="158"
             textAnchor="middle"
             fill="#ffffff"
-            fontSize="12.5"
-            fontWeight="bold"
-            fontFamily="'Inter', sans-serif"
-            letterSpacing="0.2"
+            fontSize="10.5"
+            fontWeight="900"
+            fontFamily="system-ui, -apple-system, sans-serif"
+            letterSpacing="1.2"
           >
-            Your Digital <tspan fill="#f97316">Choices</tspan>
+            YOUR <tspan fill="#38bdf8">DIGITAL</tspan> CHOICES
           </text>
-          <text
-            x="100"
-            y="164"
-            textAnchor="middle"
-            fill="#94a3b8"
-            fontSize="7"
-            fontWeight="600"
-            fontFamily="'Inter', sans-serif"
-            letterSpacing="0.8"
-            opacity="0.9"
-          >
-            Smart Choice. Digital Future.
-          </text>
+
+          {/* Symmetrical Tagline with subtle divider lines */}
+          <g opacity="0.8">
+            <line x1="20" y1="174" x2="48" y2="174" stroke="#0052FF" strokeWidth="1" />
+            <text
+              x="100"
+              y="177"
+              textAnchor="middle"
+              fill="#94a3b8"
+              fontSize="5.2"
+              fontWeight="bold"
+              fontFamily="system-ui, -apple-system, sans-serif"
+              letterSpacing="1.8"
+            >
+              BUILDING THE FUTURE WITH AI
+            </text>
+            <line x1="152" y1="174" x2="180" y2="174" stroke="#0052FF" strokeWidth="1" />
+          </g>
         </>
       )}
     </svg>
   );
 }
+
